@@ -1,4 +1,4 @@
-/* NFA for string ending with 01
+/* NFA for accepting string containing 001 as a substring
    Name: Pradip-Pun-Magar | Subject: TOC (4th sem) */
 #include <iostream>
 #include <vector>
@@ -6,15 +6,15 @@
 using namespace std;
 vector<vector<pair<char, int>>> transitions = {
     {{'0', 0}, {'1', 0}, {'0', 1}}, // q0 --0--> q0, q0 --1--> q0, q0 --0--> q1
-    {{'1', 2}},                     // q1 --1--> q2
-    {}                              // q2 has no outgoing transition
+    {{'0', 2}},                     // q1 --0--> q2
+    {{'1',3}},
+    {{'0',3},{'1',3}}
 };
 bool simulate_nfa(string input) {
     vector<int> current_states = {0}; // start from q0
-
     for (char c : input) {
         if (c != '0' && c != '1') {
-            return false;
+            return false; 
         }
         vector<int> next_states;
         for (int state : current_states) {
@@ -24,20 +24,20 @@ bool simulate_nfa(string input) {
                 }
             }
         }
+
         if (next_states.empty()) {
             return false;
         }
+
         current_states = next_states;
     }
     for (int state : current_states) {
-        if (state == 2) {
+        if (state == 3) {
             return true;
         }
     }
-
     return false;
 }
-
 int main() {
     string input;
 
