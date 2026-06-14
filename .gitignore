@@ -1,0 +1,25 @@
+# Build outputs
+output/
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.so
+*.dll
+*.dylib
+
+# Common editor and OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Python cache, if any gets created later
+__pycache__/
+*.pyc
+
+# Logs
+*.log
